@@ -5,3 +5,5 @@ embeddings.txt
 *.idx
 .ipynb_checkpoints
 .DS_Store
+*.txt
+*.zip
