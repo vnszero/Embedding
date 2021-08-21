@@ -129,7 +129,14 @@ class Analogy:
         # obtem as palavras mais similares
         _, words = self.kdtree_embedding.get_most_similar_embedding(embedding)
 
-        return words
+        if palavra_x in words:
+            words.remove(palavra_x)
+        if esta_para in words:
+            words.remove(esta_para)
+        if assim_como in words:
+            words.remove(assim_como)
+
+        return words[:4]
 
 
 class KDTreeEmbedding:
