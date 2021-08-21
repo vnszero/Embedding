@@ -5,3 +5,5 @@ embeddings.txt
 *.idx
 .ipynb_checkpoints
 .DS_Store
+embeddings_data/glove.en.100.txt
+embeddings_data/glove.pt.100.txt
