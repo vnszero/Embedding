@@ -42,7 +42,7 @@ def get_embedding(str_dataset: str, embedding_size: int = 100, overwrite=False):
                     if(i % 10000 == 0):
                         print(f"{i}: {word}")
             except ValueError:
-                print(f"LInha com erro: '{line}'")
+                print(f"Linha com erro: '{line}'")
                 erro_value += 1
 
         with open(str_dataset+".p", 'wb') as embedding_file:
@@ -127,7 +127,7 @@ class Analogy:
             return []
 
         # obtem as palavras mais similares
-        _, words = None
+        _, words = self.kdtree_embedding.get_most_similar_embedding(embedding)
 
         return words
 
@@ -193,16 +193,17 @@ class KDTreeEmbedding:
         return nearest_dist_final, nearest_words
 
     def get_most_similar_embedding(self, query: Union[np.array, str], k_most_similar: int = 5, words_to_ignore: List = []):
-        # o parametro query pode ser a palavra (string) ou o proprio embeddign
+        # o parametro query pode ser a palavra (string) ou o proprio embedding
         # a ser procurado. Caso seja a palavra, é necessario obter o embedding correspondente
-        query_embedding = query
+        embedding = query
         if type(query) == str:
             if query not in self.dict_embedding:
                 return [], []
-            query_embedding = self.dict_embedding[query]
+            embedding = self.dict_embedding[query]
 
         # obtém o embedding
-        nearest_dist, nearest_ind = None
+        nearest_dist, nearest_ind = self.kd_embedding.query(
+            [embedding], k_most_similar, return_distance=True)
         return self.positions_to_word(nearest_dist[0], nearest_ind[0],
                                       words_to_ignore)
 
@@ -213,5 +214,6 @@ class KDTreeEmbedding:
                 return [], []
             embedding = self.dict_embedding[query]
 
-        nearest_ind, nearest_dist = None
+        nearest_ind, nearest_dist = self.kd_embedding.query_radius(
+            [embedding], max_distance, return_distance=True)
         return self.positions_to_word(nearest_dist[0], nearest_ind[0], words_to_ignore)

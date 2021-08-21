@@ -6,6 +6,10 @@ embeddings.txt
 .ipynb_checkpoints
 .DS_Store
 assignment_cache/kdtree.teste.p
+assignment_cache/kdtree.en.p.p
+assignment_cache/kdtree.en.p
+assignment_cache/kdtree.pt.p.p
+assignment_cache/kdtree.pt.p
 embeddings_data/glove.en.100.txt
 embeddings_data/glove.pt.100.txt
 glove.en.100.txt.p
