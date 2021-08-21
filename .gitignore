@@ -5,5 +5,9 @@ embeddings.txt
 *.idx
 .ipynb_checkpoints
 .DS_Store
+assignment_cache/kdtree.teste.p
 embeddings_data/glove.en.100.txt
 embeddings_data/glove.pt.100.txt
+glove.en.100.txt.p
+glove.pt.100.txt.p
+teste.3.txt.p
